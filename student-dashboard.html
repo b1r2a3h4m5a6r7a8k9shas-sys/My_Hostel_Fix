@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<style>
+body{margin:0;min-height:100vh;padding:20px;font-family:sans-serif;color:#e2e8f0;background:radial-gradient(circle,#134e4a,#0f172a);box-sizing:border-box}
+details{position:fixed;top:16px;right:16px;text-align:left}
+summary{list-style:none;font-size:26px;color:#5eead4;cursor:pointer}
+nav{margin-top:8px;padding:12px;width:250px;border-radius:10px;background:#0f172a;font-size:14px;display:grid;gap:10px}
+main{max-width:640px;margin:50px auto;text-align:center}
+h1{font-size:38px;color:#5eead4;margin:0}
+h2{font-size:26px;margin:10px 0 20px}
+a.btn{display:inline-block;margin:6px;padding:11px 20px;background:#5eead4;color:#0f172a;text-decoration:none;font-weight:bold;border-radius:8px;font-size:15px}
+.card{margin-top:14px;padding:12px;border-radius:10px;background:rgba(255,255,255,.08);text-align:left;font-size:14px}
+</style>
+</head>
+<body>
+<details>
+<summary>&#9776;</summary>
+<nav>
+<div><b>History of Problems</b><div id="hist">None yet</div></div>
+<div><b>Account Details</b><div id="acc"></div></div>
+</nav>
+</details>
+<main>
+<h1>My Hostel Fix</h1>
+<h2>hello <span id="uname">Student</span> (<span id="uid">HST-101</span>)</h2>
+<a class="btn" href="facility-quick-form.html">Room &amp; Tap/Light Fix</a>
+<a class="btn" href="wellness-questions-form.html">peer</a>
+<div id="statusBox"></div>
+</main>
+<script>
+const u=JSON.parse(localStorage.getItem("user")||"{}");
+const id=localStorage.getItem("uid")||u.id||"HST-101";
+const name=u.name||"Student";
+uname.textContent=name;
+uid.textContent=id;
+acc.innerHTML="Name: "+name+"<br>ID: "+id+"<br>Room: "+(u.room||"-")+"<br>Email: "+(u.email||"-");
+const recs=JSON.parse(localStorage.getItem("records")||"[]");
+if(recs.length)hist.innerHTML=recs.map(r=>"• "+r.type+": "+r.title).join("<br>");
+const p31=JSON.parse(localStorage.getItem("p31_done")||"null");
+const p32=JSON.parse(localStorage.getItem("p32_done")||"null");
+let out="";
+if(p31)out+="<div class='card'><b>Facility Fix Scheduled:</b> "+p31.problem+" (Room "+p31.room+", ID "+p31.id+", Name "+p31.name+")<br>Staff visit time: <b>"+p31.visitTime+"</b><br>Details: "+p31.desc+"</div>";
+if(p32)out+="<div class='card'><b>Peer &amp; Wellness Status:</b> Need to fill the form and meeting arranged with mentor to talk about the problem ("+p32.solution+").</div>";
+statusBox.innerHTML=out;
+</script>
+</body>
+</html>

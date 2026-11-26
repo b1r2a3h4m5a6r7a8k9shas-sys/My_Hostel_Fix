@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Room Maintenance (3.1)</title>
+<style>
+body{margin:0;min-height:100vh;padding:24px;font-family:sans-serif;color:#e2e8f0;background:radial-gradient(circle,#134e4a,#0f172a);box-sizing:border-box}
+form{max-width:420px;margin:20px auto;padding:22px;border-radius:12px;background:rgba(255,255,255,.08);display:grid;gap:10px}
+h2{margin:0;color:#5eead4}
+input,select,button{padding:10px;border:none;border-radius:8px;font-size:15px}
+button{background:#5eead4;color:#0f172a;font-weight:bold;cursor:pointer}
+</style>
+</head>
+<body>
+<form id="f">
+<h2>Room Maintenance (3.1)</h2>
+<input id="room" placeholder="Room No" required>
+<input id="sid" placeholder="Student ID" required>
+<input id="sname" placeholder="Name" required>
+<select id="prob" required>
+<option value="">Choose Problem Type</option>
+<option>Plumber</option>
+<option>Electrician</option>
+<option>Cleaner</option>
+<option>Carpenter</option>
+<option>Air Conditioner</option>
+<option>Desert Cooler (Electrical)</option>
+<option>Desert Cooler (Plumbing)</option>
+<option>Water Cooler / Drinking Water</option>
+<option>Water Purifier / RO</option>
+<option>Sewerage</option>
+<option>Painter</option>
+<option>Mason</option>
+<option>Pest Control</option>
+</select>
+<button type="submit">next</button>
+</form>
+<script>
+const u=JSON.parse(localStorage.getItem("user")||"{}");
+sid.value=localStorage.getItem("uid")||u.id||"";
+sname.value=u.name||"";
+room.value=u.room||"";
+f.onsubmit=e=>{e.preventDefault();localStorage.setItem("p31",JSON.stringify({room:room.value.trim(),id:sid.value.trim(),name:sname.value.trim(),problem:prob.value}));location.href="facility-detail-form.html"};
+</script>
+</body>
+</html>

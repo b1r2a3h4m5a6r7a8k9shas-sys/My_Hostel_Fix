@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Implementation Steps (3.3.5)</title>
+<style>
+body{margin:0;min-height:100vh;padding:24px;font-family:sans-serif;color:#e2e8f0;background:radial-gradient(circle,#134e4a,#0f172a);box-sizing:border-box}
+.box{max-width:620px;margin:24px auto;padding:22px;border-radius:12px;background:rgba(255,255,255,.08)}
+h2{margin:0 0 12px;color:#5eead4}
+div.st{line-height:1.7}
+button{margin-top:14px;padding:10px 20px;border:none;border-radius:8px;background:#5eead4;color:#0f172a;font-weight:bold;font-size:15px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>Steps to Implement in Real Life (3.3.5)</h2>
+<div id="out" class="st"></div>
+<button id="nxt" type="button">next to 3.3.6</button>
+</div>
+<script src="questions-and-solutions.js"></script>
+<script>
+const qIdx=Number(localStorage.getItem("p32_q")||0);
+const sIdx=Number(localStorage.getItem("p32_s")||0);
+const sol=(QDATA[qIdx]||QDATA[0]).sols[sIdx]||(QDATA[0].sols[0]);
+out.innerHTML="<b>Solution:</b> "+sol[0]+"<br><br>"+sol[2].join("<br>");
+nxt.onclick=()=>location.href="solution-review.html";
+</script>
+</body>
+</html>

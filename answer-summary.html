@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Answer &amp; Summary (3.2.3)</title>
+<style>
+body{margin:0;min-height:100vh;padding:24px;font-family:sans-serif;color:#e2e8f0;background:radial-gradient(circle,#134e4a,#0f172a);box-sizing:border-box}
+.box{max-width:640px;margin:24px auto;padding:22px;border-radius:12px;background:rgba(255,255,255,.08)}
+h2{margin:0 0 12px;color:#5eead4}
+p{line-height:1.5}
+button{margin-top:14px;padding:10px 20px;border:none;border-radius:8px;background:#5eead4;color:#0f172a;font-weight:bold;font-size:15px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>Your Answer &amp; Summary (3.2.3)</h2>
+<div id="out"></div>
+<button id="nxt" type="button">next to 3.3.3</button>
+</div>
+<script src="questions-and-solutions.js"></script>
+<script>
+const idx=Number(localStorage.getItem("p32_q")||0);
+const ans=JSON.parse(localStorage.getItem("p32_ans")||"[]");
+const item=QDATA[idx]||QDATA[0];
+const userAns=ans[idx]||"Not entered";
+out.innerHTML="<p><b>Group:</b> "+item.grp+"<br><b>Question:</b> "+item.ask+"<br><b>Your Answer:</b> "+userAns+"<br><b>Short Explanation:</b> You answered \""+userAns.slice(0,80)+"\" for "+item.grp.toLowerCase()+".<br><b>Summary:</b> "+item.ans+"<br><b>Idea Angle:</b> "+item.rev+"</p>";
+nxt.onclick=()=>location.href="solution-picker.html";
+</script>
+</body>
+</html>

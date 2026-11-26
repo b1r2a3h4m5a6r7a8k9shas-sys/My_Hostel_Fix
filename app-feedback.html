@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>App Review</title>
+<style>
+body{margin:0;min-height:100vh;padding:24px;font-family:sans-serif;color:#e2e8f0;background:radial-gradient(circle,#134e4a,#0f172a);box-sizing:border-box}
+form{max-width:520px;margin:24px auto;padding:22px;border-radius:12px;background:rgba(255,255,255,.08);display:grid;gap:10px}
+h2{margin:0;color:#5eead4}
+select,textarea,button{padding:10px;border:none;border-radius:8px;font-size:15px;font-family:sans-serif}
+textarea{min-height:80px}
+button{background:#5eead4;color:#0f172a;font-weight:bold;cursor:pointer}
+</style>
+</head>
+<body>
+<form id="f">
+<h2>How Was the App?</h2>
+<select id="ar"><option>5 - Very Good</option><option>4 - Good</option><option>3 - Okay</option><option>2 - Needs Work</option></select>
+<textarea id="an" placeholder="Share how the app felt to use..." required></textarea>
+<button type="submit">finish</button>
+</form>
+<script src="questions-and-solutions.js"></script>
+<script>
+f.onsubmit=e=>{
+e.preventDefault();
+localStorage.setItem("app_rev",JSON.stringify({rating:ar.value,note:an.value.trim()}));
+const flow=localStorage.getItem("reviewFlow")||"3.1";
+if(flow==="3.1"){
+const d=JSON.parse(localStorage.getItem("p31_full")||"{}");
+const visitTime=(d.date||"Today")+" between "+(d.slot||"10:00-12:00");
+localStorage.setItem("p31_done",JSON.stringify({...d,visitTime}));
+}else{
+const qIdx=Number(localStorage.getItem("p32_q")||0);
+const sIdx=Number(localStorage.getItem("p32_s")||0);
+const sol=((QDATA[qIdx]||QDATA[0]).sols[sIdx]||QDATA[0].sols[0])[0];
+localStorage.setItem("p32_done",JSON.stringify({solution:sol}));
+const recs=JSON.parse(localStorage.getItem("records")||"[]");
+recs.unshift({type:"Peer & Wellness",title:sol+" (Mentor Meeting)"});
+localStorage.setItem("records",JSON.stringify(recs));
+}
+location.href="student-dashboard.html";
+};
+</script>
+</body>
+</html>

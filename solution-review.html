@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solution Review (3.3.6)</title>
+<style>
+body{margin:0;min-height:100vh;padding:24px;font-family:sans-serif;color:#e2e8f0;background:radial-gradient(circle,#134e4a,#0f172a);box-sizing:border-box}
+form{max-width:520px;margin:24px auto;padding:22px;border-radius:12px;background:rgba(255,255,255,.08);display:grid;gap:10px}
+h2{margin:0;color:#5eead4}
+select,textarea,button{padding:10px;border:none;border-radius:8px;font-size:15px;font-family:sans-serif}
+textarea{min-height:80px}
+button{background:#5eead4;color:#0f172a;font-weight:bold;cursor:pointer}
+</style>
+</head>
+<body>
+<form id="f">
+<h2>Review Solution &amp; Steps (3.3.6)</h2>
+<select id="rate"><option>Clear &amp; Helpful</option><option>Good, Needs Small Tweak</option><option>Not Suitable</option></select>
+<textarea id="rev" placeholder="Your feedback on this solution and its steps..." required></textarea>
+<button type="submit">submit and next</button>
+</form>
+<script>
+f.onsubmit=e=>{e.preventDefault();localStorage.setItem("p32_rev",JSON.stringify({rate:rate.value,note:rev.value.trim()}));localStorage.setItem("reviewFlow","3.2");location.href="app-feedback.html"};
+</script>
+</body>
+</html>

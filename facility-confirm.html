@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirm Submission (3.1.2)</title>
+<style>
+body{margin:0;min-height:100vh;padding:24px;font-family:sans-serif;color:#e2e8f0;background:radial-gradient(circle,#134e4a,#0f172a);box-sizing:border-box}
+.box{max-width:520px;margin:24px auto;padding:22px;border-radius:12px;background:rgba(255,255,255,.08)}
+h2{margin:0 0 12px;color:#5eead4}
+p{line-height:1.5}
+button{margin-top:12px;margin-right:8px;padding:10px 18px;border:none;border-radius:8px;background:#5eead4;color:#0f172a;font-weight:bold;font-size:15px;cursor:pointer}
+.msg{margin-top:12px;color:#99f6e4}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>Review Selection (3.1.2)</h2>
+<div id="out"></div>
+<button id="backBtn" type="button">back</button>
+<button id="subBtn" type="button">submit</button>
+<button id="revBtn" type="button" style="display:none">next to app review</button>
+<div class="msg" id="msg"></div>
+</div>
+<script>
+const d=JSON.parse(localStorage.getItem("p31_full")||"{}");
+out.innerHTML="<p><b>Name:</b> "+(d.name||"-")+"<br><b>ID:</b> "+(d.id||"-")+"<br><b>Room:</b> "+(d.room||"-")+"<br><b>Type:</b> "+(d.problem||"-")+" ("+(d.subcat||"-")+")<br><b>Block:</b> "+(d.block||"-")+" | <b>Area:</b> "+(d.roomType||"-")+"<br><b>Contact:</b> "+(d.contact||"-")+"<br><b>Date &amp; Slot:</b> "+(d.date||"-")+" ("+(d.slot||"-")+")<br><b>Description:</b> "+(d.desc||"-")+"</p>";
+backBtn.onclick=()=>location.href="facility-detail-form.html";
+subBtn.onclick=()=>{const db=JSON.parse(localStorage.getItem("db31")||"[]");db.push(d);localStorage.setItem("db31",JSON.stringify(db));const recs=JSON.parse(localStorage.getItem("records")||"[]");recs.unshift({type:"Facility Fix",title:(d.problem||"Issue")+" - Room "+(d.room||"-")});localStorage.setItem("records",JSON.stringify(recs));localStorage.setItem("reviewFlow","3.1");msg.textContent="Saved to database!";revBtn.style.display="inline-block"};
+revBtn.onclick=()=>location.href="app-feedback.html";
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problem Details (3.1.1)</title>
+<style>
+body{margin:0;min-height:100vh;padding:24px;font-family:sans-serif;color:#e2e8f0;background:radial-gradient(circle,#134e4a,#0f172a);box-sizing:border-box}
+form{max-width:520px;margin:16px auto;padding:22px;border-radius:12px;background:rgba(255,255,255,.08);display:grid;gap:10px}
+h2{margin:0;color:#5eead4}
+input,select,textarea,button{padding:9px;border:none;border-radius:8px;font-size:15px;font-family:sans-serif}
+textarea{min-height:80px}
+button{background:#5eead4;color:#0f172a;font-weight:bold;cursor:pointer}
+.row{display:flex;gap:12px;flex-wrap:wrap;font-size:14px}
+</style>
+</head>
+<body>
+<form id="f">
+<h2>Detailed Problem Form (3.1.1)</h2>
+<select id="subcat">
+<option>Tap / Pipe Leak</option>
+<option>Switch / Light / Fan Fault</option>
+<option>Washroom / Floor Cleaning</option>
+<option>Door / Bed / Cupboard Repair</option>
+<option>Cooling / Water / Pest Issue</option>
+</select>
+<input id="block" placeholder="Hostel Block / Sub-Block" required>
+<div class="row">
+<label><input type="radio" name="rt" value="Room No" checked> Room No</label>
+<label><input type="radio" name="rt" value="Shared / Common"> Shared / Common</label>
+</div>
+<input id="contact" placeholder="Contact No" required>
+<input id="date" type="date" required>
+<select id="slot">
+<option>08:00-10:00</option>
+<option>10:00-12:00</option>
+<option>12:00-14:00</option>
+<option>14:00-16:00</option>
+<option>16:00-18:00</option>
+</select>
+<textarea id="desc" maxlength="500" placeholder="Describe the problem in detail (max 500 chars)..." required></textarea>
+<button type="submit">next</button>
+</form>
+<script>
+f.onsubmit=e=>{e.preventDefault();const base=JSON.parse(localStorage.getItem("p31")||"{}");const rt=document.querySelector("input[name='rt']:checked").value;localStorage.setItem("p31_full",JSON.stringify({...base,subcat:subcat.value,block:block.value.trim(),roomType:rt,contact:contact.value.trim(),date:date.value,slot:slot.value,desc:desc.value.trim()}));location.href="facility-confirm.html"};
+</script>
+</body>
+</html>

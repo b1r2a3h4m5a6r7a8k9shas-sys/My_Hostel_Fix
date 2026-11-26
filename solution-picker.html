@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose Solution (3.3.3)</title>
+<style>
+body{margin:0;min-height:100vh;padding:24px;font-family:sans-serif;color:#e2e8f0;background:radial-gradient(circle,#134e4a,#0f172a);box-sizing:border-box}
+.box{max-width:640px;margin:0 auto;padding:22px;border-radius:12px;background:rgba(255,255,255,.08)}
+h2{margin:0 0 12px;color:#5eead4}
+.list{display:grid;gap:8px}
+button{margin-top:14px;padding:10px 20px;border:none;border-radius:8px;background:#5eead4;color:#0f172a;font-weight:bold;font-size:15px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>10 Solutions for Your Question (3.3.3)</h2>
+<div id="sols" class="list"></div>
+<button id="nxt" type="button">next to 3.3.4</button>
+</div>
+<script src="questions-and-solutions.js"></script>
+<script>
+const qIdx=Number(localStorage.getItem("p32_q")||0);
+const item=QDATA[qIdx]||QDATA[0];
+sols.innerHTML=item.sols.map((s,i)=>"<label><input type='radio' name='spick' value='"+i+"' "+(i===0?"checked":"")+"> "+s[0]+"</label>").join("");
+nxt.onclick=()=>{const sIdx=Number(document.querySelector("input[name='spick']:checked").value);localStorage.setItem("p32_s",sIdx);location.href="solution-definition.html"};
+</script>
+</body>
+</html>
